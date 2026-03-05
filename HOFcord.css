@@ -52,69 +52,69 @@
    HOF - VARS
    Edit these variables to change the theme!
 ========================================= */
-/* --- DARK MODE (Cyberpunk Void) --- */
+/* --- DARK MODE (Pastel Night) --- */
 .theme-dark {
-    --window-tint: rgba(5, 0, 15, 0.6); 
-    --bg-void: #050010;
+    --window-tint: rgba(15, 10, 25, 0.25); /* Much more transparent */
+    --bg-void: #0f0a19; /* Softer, muted dark background */
     
-    --grid-color-1: #ff007b; /* Neon Magenta */
-    --grid-color-2: #00f2ff; /* Electric Cyan */
-    --grid-color-3: #7000ff; /* Deep Purple */
+    --grid-color-1: #ffb3ba; /* Pastel Pink */
+    --grid-color-2: #bae1ff; /* Pastel Blue */
+    --grid-color-3: #e8baff; /* Pastel Purple */
 
-    --sun-top: #ff007b;
-    --sun-mid: #7000ff; 
-    --sun-bot: #00f2ff;
+    --sun-top: #ffb3ba;
+    --sun-mid: #e8baff; 
+    --sun-bot: #bae1ff;
 
-    --dust-color-1: #39ff14; /* Toxic Lime */
-    --dust-color-2: #ff007b;
-    --dust-color-3: #00f2ff;
+    --dust-color-1: #baffc9; /* Pastel Green */
+    --dust-color-2: #ffb3ba;
+    --dust-color-3: #bae1ff;
 
-    --interactive-normal: #00f2ff;
-    --interactive-hover: #ff007b;
-    --hover-glow: rgba(0, 242, 255, 0.8);
-    --shadow-color: rgba(0, 0, 0, 0.8);
-    --glass-border: rgba(0, 242, 255, 0.3);
+    --interactive-normal: #bae1ff;
+    --interactive-hover: #ffb3ba;
+    --hover-glow: rgba(186, 225, 255, 0.4); /* Softer, transparent glow */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* Much softer shadows */
+    --glass-border: rgba(186, 225, 255, 0.15); /* Barely-there borders */
     
-    --text-normal: #ffffff;
-    --text-muted: #8b9bb4;
-    --background-base-lowest: rgba(5, 0, 15, 0.7) !important;
-    --background-surface-highest: rgba(80, 0, 120, 0.7) !important;
-    --modal-background: rgba(20, 0, 40, 0.85) !important;
+    --text-normal: #f0f0f0;
+    --text-muted: #a0a0b0;
+    --background-base-lowest: rgba(15, 10, 25, 0.3) !important; /* Huge transparency drop */
+    --background-surface-highest: rgba(40, 30, 60, 0.3) !important;
+    --modal-background: rgba(15, 10, 25, 0.45) !important;
 }
 
-/* --- LIGHT MODE (Holographic Prism) --- */
+/* --- LIGHT MODE (Pastel Cloud) --- */
 .theme-light {
-    --window-tint: rgba(255, 255, 255, 0.4); 
-    --bg-void: #f4f7ff; /* Bright airy blue-white */
+    --window-tint: rgba(255, 255, 255, 0.2); /* Extremely transparent */
+    --bg-void: #f9f9fc; /* Soft off-white */
     
-    --grid-color-1: #ff3399; /* Hot Pink */
-    --grid-color-2: #00d4ff; /* Bright Sky Blue */
-    --grid-color-3: #ffcc00; /* Sun Yellow */
+    --grid-color-1: #ffdac1; /* Pastel Peach */
+    --grid-color-2: #cfffe5; /* Pastel Mint */
+    --grid-color-3: #ffb7b2; /* Pastel Coral */
 
-    --sun-top: #ffcc00;
-    --sun-mid: #ff3399; 
-    --sun-bot: #00d4ff;
+    --sun-top: #ffdac1;
+    --sun-mid: #ffb7b2; 
+    --sun-bot: #cfffe5;
 
-    --dust-color-1: #ff3399; 
-    --dust-color-2: #00d4ff;
-    --dust-color-3: #ffcc00;
+    --dust-color-1: #ffdac1; 
+    --dust-color-2: #cfffe5;
+    --dust-color-3: #ffb7b2;
 
-    --interactive-normal: #ff3399;
-    --interactive-hover: #00d4ff;
-    --hover-glow: rgba(255, 51, 153, 0.6);
-    --shadow-color: rgba(0, 50, 100, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.8);
+    --interactive-normal: #ffb7b2;
+    --interactive-hover: #cfffe5;
+    --hover-glow: rgba(255, 183, 178, 0.3); /* Softer, transparent glow */
+    --shadow-color: rgba(0, 20, 40, 0.08); /* Feathery shadows */
+    --glass-border: rgba(255, 255, 255, 0.3);
     
-    --text-normal: #1a1a2e;
-    --text-muted: #5a6b8c;
-    --background-base-lowest: rgba(255, 255, 255, 0.6) !important;
-    --background-surface-highest: rgba(255, 255, 255, 0.8) !important;
-    --modal-background: rgba(255, 255, 255, 0.85) !important;
+    --text-normal: #4a4a5a;
+    --text-muted: #8a8a9a;
+    --background-base-lowest: rgba(255, 255, 255, 0.2) !important; /* Huge transparency drop */
+    --background-surface-highest: rgba(255, 255, 255, 0.4) !important;
+    --modal-background: rgba(255, 255, 255, 0.5) !important;
 }
 
 /* --- SHARED VARIABLES --- */
 :root {
-    --blur-strength: 12px;
+    --blur-strength: 15px; /* Increased blur to make the extra transparency look like frosted glass */
     --bar-min-width: 380px;
     --bar-max-width: 700px;
     

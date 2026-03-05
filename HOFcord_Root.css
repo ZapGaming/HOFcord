@@ -1,248 +1,260 @@
-/**
- * @name Pastel Dreamscape 3D (Root Engine)
- * @author computer-catt (Upgraded by Gemini)
- * @description A soft pastel neon, highly 3D animated transparent theme engine.
- * @version 4.0.0
- */
-
-@import url(https://raw.githubusercontent.com/Benzeel/Bennys-Css-Snippets/refs/heads/main/TransparentMessagebox.css);
-
-/* --- FALLBACK VARIABLES (Overridden by user snippet) --- */
-:root, .theme-dark {
-    --window-tint: rgba(20, 15, 30, 0.4); 
-    --blur-strength: 10px;
-    --bg-void: #0f0b15;
-    --grid-color-1: rgba(245, 194, 231, 0.4);
-    --grid-color-2: rgba(148, 226, 213, 0.4);
-    --sun-top: #f5a97f;
-    --sun-mid: #f5c2e7;
-    --sun-bot: #cba6f7;
-    --shape-primary: rgba(148, 226, 213, 0.6);
-    --shape-secondary: rgba(203, 166, 247, 0.6);
-    --shape-glow: rgba(148, 226, 213, 0.3);
-    --dust-color-1: #94e2d5;
-    --dust-color-2: #f5c2e7;
-    --dust-color-3: #cba6f7;
-    --interactive-normal: #94e2d5;
-    --interactive-hover: #f5c2e7;
-    --brand-experiment: #cba6f7;
-    --hover-glow: rgba(245, 194, 231, 0.4);
-
-    /* Core Theme Overrides */
-    --theme-background-image: none;
-    --enable-blur: 1; 
-    --tm-enable: 1; 
-    --tm-blur: var(--blur-strength);
-    --app-frame-background: 0 0 !important;
-    --modal-background: rgba(45, 25, 60, 0.65) !important;
-    --modal-footer-background: rgba(25, 15, 35, 0.75) !important;
-    --user-profile-overlay-background: rgba(148, 226, 213, 0.1);
-    --card-background-default: rgba(245, 194, 231, 0.1) !important;
-    --background-scrim: rgba(0, 0, 0, 0.6);
-    --scrollbar-auto-thumb: rgba(203, 166, 247, 0.4);
-    --__header-bar-background: 0 0 !important;
-}
-
-/* --- 3D NATIVE CSS BACKGROUND ENVIRONMENT --- */
+/* ==============================================
+   1. MAIN 3D ENVIRONMENT (VOID, GRIDS, SUN)
+   ============================================== */
 html, body {
     background: var(--bg-void) !important;
     overflow: hidden;
-    perspective: 1000px; /* Deep 3D Viewport */
+    perspective: 1200px; 
     transform-style: preserve-3d;
 }
 
-/* 1. 3D Moving Floor Grid */
+/* Moving Floor Grid */
 body::before {
-    content: "";
-    position: absolute;
-    bottom: -60%; left: -50%; width: 200%; height: 160%;
+    content: ""; position: absolute; bottom: -60%; left: -50%; width: 200%; height: 160%;
     background-image: 
-        linear-gradient(90deg, var(--grid-color-1) 1px, transparent 1px),
-        linear-gradient(var(--grid-color-2) 1px, transparent 1px);
-    background-size: 60px 60px;
+        linear-gradient(90deg, rgba(255,0,123,0.5) 2px, transparent 2px),
+        linear-gradient(rgba(0,242,255,0.5) 2px, transparent 2px);
+    background-size: 80px 80px;
     transform-origin: center top;
     transform: rotateX(75deg) translateZ(-250px);
-    animation: gridMove 4s linear infinite;
-    z-index: -3;
-    box-shadow: inset 0 0 150px var(--bg-void);
-    pointer-events: none;
-}
-
-/* 2. 3D Moving Ceiling Grid */
-.theme-dark::before {
-    content: "";
-    position: absolute;
-    top: -60%; left: -50%; width: 200%; height: 160%;
-    background-image: 
-        linear-gradient(90deg, var(--grid-color-2) 1px, transparent 1px),
-        linear-gradient(var(--grid-color-1) 1px, transparent 1px);
-    background-size: 80px 80px; /* Slightly larger for depth illusion */
-    transform-origin: center bottom;
-    transform: rotateX(-75deg) translateZ(-250px);
-    animation: gridMoveCeiling 6s linear infinite;
+    animation: gridMove 3s linear infinite;
     z-index: -3;
     box-shadow: inset 0 0 200px var(--bg-void);
     pointer-events: none;
 }
 
-/* 3. Glowing 3D Vaporwave Sun */
+/* Floating Hyper Sun */
 body::after {
-    content: "";
-    position: absolute;
-    top: 15%; left: 50%; width: 350px; height: 350px;
-    margin-left: -175px;
+    content: ""; position: absolute; top: 10%; left: 50%; width: 400px; height: 400px;
+    margin-left: -200px;
     background: linear-gradient(180deg, var(--sun-top), var(--sun-mid), var(--sun-bot));
     border-radius: 50%;
-    box-shadow: 0 0 80px var(--hover-glow), inset 0 -20px 40px rgba(0,0,0,0.4);
-    animation: floatSun 8s ease-in-out infinite alternate;
+    box-shadow: 0 0 120px var(--sun-top), inset 0 -30px 60px rgba(0,0,0,0.6);
+    animation: floatSun 6s ease-in-out infinite alternate, hueShift 10s linear infinite;
     z-index: -4;
     pointer-events: none;
 }
 
-/* 4. 3D Floating Frosted Crystal (Right Side) */
-#app-mount::before {
-    content: "";
-    position: absolute;
-    bottom: 20%; right: 15%; width: 100px; height: 100px;
-    background: linear-gradient(135deg, var(--shape-primary), var(--shape-secondary));
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: -15px 15px 40px var(--shape-glow), inset 5px -5px 20px rgba(255,255,255,0.4);
-    animation: floatCrystal 18s ease-in-out infinite alternate-reverse;
-    z-index: -2;
-    pointer-events: none;
-}
-
-/* 5. 3D Spinning Neon Ring (Left Side) */
-#app-mount::after {
-    content: "";
-    position: absolute;
-    top: 20%; left: 15%; width: 120px; height: 120px;
-    border: 4px solid var(--interactive-normal);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--interactive-normal), inset 0 0 20px var(--interactive-normal);
-    animation: spinRing 20s linear infinite;
-    z-index: -2;
-    pointer-events: none;
-}
-
-/* 6. 3D Floating Particle Dust */
+/* Floating Toxic Dust */
 .theme-dark::after {
-    content: "";
-    position: absolute; top: 50%; left: 50%; width: 4px; height: 4px;
-    background: transparent;
-    border-radius: 50%;
+    content: ""; position: absolute; top: 50%; left: 50%; width: 5px; height: 5px;
+    background: transparent; border-radius: 50%;
     box-shadow: 
-        200px -200px 5px var(--dust-color-1),
-        -300px 150px 8px var(--dust-color-2),
-        400px 300px 4px var(--dust-color-3),
-        -400px -300px 6px var(--dust-color-1),
-        150px 400px 5px var(--dust-color-2),
-        -250px -450px 7px var(--dust-color-3),
-        500px -100px 5px var(--dust-color-1),
-        -150px 250px 8px var(--dust-color-2);
-    animation: floatDust 12s linear infinite;
-    z-index: -1;
-    pointer-events: none;
+        200px -200px 8px var(--dust-color-1), -300px 150px 12px var(--dust-color-2),
+        400px 300px 6px var(--dust-color-3), -400px -300px 10px var(--dust-color-1),
+        150px 400px 8px var(--dust-color-2), -250px -450px 12px var(--dust-color-3),
+        500px -100px 6px var(--dust-color-1), -150px 250px 10px var(--dust-color-2);
+    animation: floatDust 8s linear infinite;
+    z-index: -1; pointer-events: none;
 }
 
-/* --- 3D ANIMATION KEYFRAMES --- */
+/* ==============================================
+   2. 3D HOME BUTTON (ROTATING NEON CUBE)
+   ============================================== */
+.tutorialContainer__1f388, .wrapper__6e9f8 {
+    contain: none !important; overflow: visible !important; background: transparent !important;
+}
+
+.tutorialContainer__1f388 .childWrapper__6e9f8 {
+    background: transparent !important; width: 35px !important; height: 35px !important;
+    position: relative; transform-style: preserve-3d !important;
+    animation: hyperSpin 8s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+.tutorialContainer__1f388 .childWrapper__6e9f8 svg { display: none; }
+
+/* Core Glass Face */
+.tutorialContainer__1f388 .childWrapper__6e9f8::before {
+    content: ""; position: absolute; inset: 0;
+    background: rgba(255, 255, 255, 0.1); border: 2px solid var(--grid-color-1);
+    box-shadow: 0 0 20px var(--grid-color-1), inset 0 0 15px var(--grid-color-1);
+    transform: translateZ(17.5px); backdrop-filter: blur(4px); border-radius: 6px;
+}
+
+/* Intersecting Neon Ring */
+.tutorialContainer__1f388 .childWrapper__6e9f8::after {
+    content: ""; position: absolute; inset: -8px;
+    border: 3px solid var(--grid-color-2);
+    box-shadow: 0 0 25px var(--grid-color-2), inset 0 0 20px var(--grid-color-2);
+    transform: rotateY(90deg); border-radius: 50%;
+    animation: breathe 2.5s ease-in-out infinite;
+}
+
+/* Orbiting Outer Ring */
+.tutorialContainer__1f388 .wrapper__6e9f8::before {
+    content: ""; position: absolute; width: 45px; height: 45px;
+    border: 2px solid var(--sun-mid); box-shadow: 0 0 20px var(--sun-mid);
+    top: 50%; left: 50%; margin-left: -22.5px; margin-top: -22.5px;
+    transform: rotateX(90deg) translateZ(0px);
+    animation: orbit 3s linear infinite;
+    border-radius: 50%;
+}
+
+.tutorialContainer__1f388:hover .childWrapper__6e9f8 {
+    filter: saturate(2.5) brightness(1.5); animation-duration: 3s;
+}
+
+/* ==============================================
+   3. 3D CHAT CAPSULE (NEBULA FLOOR/CEILING)
+   ============================================== */
+[class*="channelBottomBar"] {
+    background: transparent !important; perspective: 1000px !important;
+    display: flex !important; justify-content: center !important;
+    align-items: center !important; padding-bottom: 30px !important;
+}
+
+[class*="channelTextArea"] { width: fit-content !important; margin: 0 auto !important; }
+
+[class*="scrollableContainer"] {
+    width: var(--bar-min-width) !important; min-height: 48px !important;
+    background: rgba(5, 0, 15, 0.8) !important; border-radius: 30px !important;
+    border: 1px solid rgba(0, 242, 255, 0.4) !important; overflow: hidden !important;
+    transform-style: preserve-3d !important; transform: rotateX(15deg);
+    transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1), transform 0.4s ease;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 30px rgba(112,0,255,0.4);
+}
+
+/* 3D Nebula Floor */
+[class*="scrollableContainer"]::before {
+    content: ""; position: absolute; inset: -100%; z-index: -1;
+    background: 
+        repeating-linear-gradient(90deg, transparent 0 30px, rgba(255,255,255,0.1) 30px 32px),
+        conic-gradient(from 180deg at 50% 50%, var(--c1), var(--c2), var(--c3), var(--c1));
+    background-size: 30px 30px, 400% 400%; background-blend-mode: overlay;
+    opacity: 0.6; transform-origin: center top; transform: rotateX(80deg) translateZ(-25px);
+    animation: nebulaFlow 8s infinite alternate, hueShift 5s infinite linear;
+}
+
+/* 3D Nebula Ceiling */
+[class*="scrollableContainer"]::after {
+    content: ""; position: absolute; inset: -100%; z-index: -1;
+    background: conic-gradient(from 0deg at 50% 50%, var(--c3), var(--c1), var(--c2), var(--c3));
+    background-size: 400% 400%; background-blend-mode: soft-light;
+    opacity: 0.4; transform-origin: center bottom; transform: rotateX(-80deg) translateZ(-25px);
+    animation: nebulaFlow 8s infinite alternate-reverse, hueShift 5s infinite linear;
+}
+
+/* Expand & Levitate on Focus */
+[class*="scrollableContainer"]:focus-within {
+    width: var(--bar-max-width) !important; border-color: var(--c3) !important;
+    transform: rotateX(0deg) translateZ(20px);
+    box-shadow: 0 0 60px var(--c2), 0 30px 80px rgba(0,0,0,1);
+}
+
+[class*="placeholder"], [class*="textArea"] {
+    text-align: center; transform: translateZ(25px); text-shadow: 0 0 12px var(--c1);
+}
+[class*="inner__"] { background: transparent !important; padding: 0 25px !important; }
+[class*="buttons__"] { transform: translateZ(35px); }
+
+/* ==============================================
+   4. 3D HOLOGRAPHIC PRISM PORTAL (BOTTOM RIGHT)
+   ============================================== */
+#app-mount::before, #app-mount::after {
+    content: ""; position: fixed; bottom: 40px; right: 40px; width: 70px; height: 120px;
+    z-index: 9999; transform-style: preserve-3d;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000');
+    background-size: 300% 300%; background-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.6); pointer-events: auto;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Plane A: Front Face (Pink/Purple overlay) */
+#app-mount::before {
+    background-color: rgba(255, 0, 123, 0.5); background-blend-mode: overlay;
+    box-shadow: 0 0 50px rgba(255, 0, 123, 0.6);
+    transform: perspective(1000px) rotateY(0deg) translateZ(20px);
+    animation: portalSpinMain 8s infinite linear;
+}
+
+/* Plane B: Intersecting Side (Cyan/Blue overlay) */
+#app-mount::after {
+    background-color: rgba(0, 242, 255, 0.5); background-blend-mode: color-dodge;
+    box-shadow: 0 0 50px rgba(0, 242, 255, 0.6);
+    transform: perspective(1000px) rotateY(90deg);
+    animation: portalSpinSecondary 8s infinite linear;
+}
+
+#app-mount:hover::before, #app-mount:hover::after {
+    width: 100px; height: 160px; bottom: 30px; right: 30px;
+    filter: brightness(1.5) saturate(2); box-shadow: 0 0 80px #fff;
+}
+
+/* ==============================================
+   5. ALL KEYFRAME ANIMATIONS
+   ============================================== */
 @keyframes gridMove {
     0% { transform: rotateX(75deg) translateZ(-250px) translateY(0); }
-    100% { transform: rotateX(75deg) translateZ(-250px) translateY(60px); }
-}
-@keyframes gridMoveCeiling {
-    0% { transform: rotateX(-75deg) translateZ(-250px) translateY(0); }
-    100% { transform: rotateX(-75deg) translateZ(-250px) translateY(-80px); }
+    100% { transform: rotateX(75deg) translateZ(-250px) translateY(80px); }
 }
 @keyframes floatSun {
     0% { transform: translate3d(0, 0, -400px) scale(1); }
-    100% { transform: translate3d(0, -20px, -400px) scale(1.02); }
-}
-@keyframes floatCrystal {
-    0% { transform: translate3d(0, 0, -200px) rotateX(45deg) rotateY(45deg) rotateZ(0deg); }
-    100% { transform: translate3d(-30vw, -30vh, 150px) rotateX(405deg) rotateY(180deg) rotateZ(180deg); }
-}
-@keyframes spinRing {
-    0% { transform: translate3d(0, 0, -300px) rotateX(60deg) rotateY(0deg); }
-    100% { transform: translate3d(15vw, 15vh, 50px) rotateX(420deg) rotateY(360deg); }
+    100% { transform: translate3d(0, -30px, -400px) scale(1.05); }
 }
 @keyframes floatDust {
     0% { transform: translate3d(0, 0, -600px) rotateZ(0deg); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translate3d(0, 0, 400px) rotateZ(180deg); opacity: 0; }
+    50% { opacity: 1; filter: brightness(2); }
+    100% { transform: translate3d(0, 0, 600px) rotateZ(180deg); opacity: 0; }
+}
+@keyframes hyperSpin {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    25% { transform: rotateX(90deg) rotateY(45deg) rotateZ(30deg); }
+    50% { transform: rotateX(180deg) rotateY(180deg) rotateZ(0deg); }
+    75% { transform: rotateX(270deg) rotateY(225deg) rotateZ(-30deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg); }
+}
+@keyframes breathe {
+    0%, 100% { scale: 1; opacity: 0.8; }
+    50% { scale: 1.25; opacity: 1; box-shadow: 0 0 40px var(--grid-color-2); }
+}
+@keyframes orbit {
+    from { transform: rotateX(90deg) rotateZ(0deg); }
+    to { transform: rotateX(90deg) rotateZ(360deg); }
+}
+@keyframes nebulaFlow {
+    0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; }
+}
+@keyframes hueShift {
+    from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); }
+}
+@keyframes portalSpinMain {
+    0% { transform: perspective(1000px) rotateY(0deg) rotateX(15deg) translateZ(10px); background-position: 0% 50%; }
+    50% { transform: perspective(1000px) rotateY(180deg) rotateX(-15deg) translateY(-20px) translateZ(10px); background-position: 100% 50%; }
+    100% { transform: perspective(1000px) rotateY(360deg) rotateX(15deg) translateZ(10px); background-position: 0% 50%; }
+}
+@keyframes portalSpinSecondary {
+    0% { transform: perspective(1000px) rotateY(90deg) rotateX(15deg); background-position: 25% 50%; }
+    50% { transform: perspective(1000px) rotateY(270deg) rotateX(-15deg) translateY(-20px); background-position: 75% 50%; }
+    100% { transform: perspective(1000px) rotateY(450deg) rotateX(15deg); background-position: 25% 50%; }
 }
 
-/* --- UI TRANSPARENCY & FIXES --- */
+/* ==============================================
+   6. UI FIXES & EXTREME HOVER EFFECTS
+   ============================================== */
 body { image-rendering: auto; background: var(--window-tint) !important; }
-.root_bfe55a, .callContainer_cb9592 {background: 0 0;}
-.avatarUploaderInnerSquareDisabled_e04502 {background-color: rgba(0, 0, 0, 0.5);}
-.bannerContent_b76d57, .container_e9ef78 {mask: linear-gradient(black 70%, transparent);}
+.appMount_ea7e65, .root_bfe55a, .callContainer_cb9592, .content_e9e3ed, .contentRegion__23e6b { background: 0 0 !important; }
+.tutorialContainer__1f388 .mask__1f388 { mask: none !important; -webkit-mask: none !important; }
+.guilds__2f338, .scroller__3d071 { contain: none !important; }
 .vc-settings-modal, .container__8a031 {background-color: var(--modal-background);}
-.content_e9e3ed, .contentRegion__23e6b, .contentRegionScroller__23e6b {background: 0 0;}
-.sidebarListRounded__5e434 { backdrop-filter: none; -webkit-backdrop-filter: none; }
-.user-profile-popout { border-radius: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); > div {border-radius: 28px}}
-.banner__68edb { mask: linear-gradient(black 70%, transparent);}
-.chatTarget__01ae2.floating__01ae2 { background: var(--background-surface-high);}
-.vc-shiki-root {background: var(--background-surface-high) !important;}
-.user-profile-modal-v2:not(.custom-user-profile-theme) { --background-base-lower: rgba(45, 25, 60, 0.5) !important; }
+[class*="form__"] { overflow: visible !important; }
 
-/* --- EXTREME 3D HOVER INTERACTIONS --- */
+/* 3D Pop-out on Hover */
 .wrapper__8436d, .interactive, .container__87116 {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
     transform-style: preserve-3d;
 }
-
-.wrapper__8436d:hover .childWrapper__6e9f8, 
-.wrapper__2ea32:hover .icon__2ea32,
-.interactive:hover {
-    transform: translateZ(25px) scale(1.08) rotateX(5deg);
-    box-shadow: 0 10px 25px var(--hover-glow);
-    background: rgba(255, 255, 255, 0.05);
+.wrapper__8436d:hover .childWrapper__6e9f8, .wrapper__2ea32:hover .icon__2ea32, .interactive:hover {
+    transform: translateZ(35px) scale(1.1) rotateX(8deg);
+    box-shadow: 0 15px 35px var(--hover-glow); background: rgba(255, 255, 255, 0.1);
 }
 
-/* --- BLUR & GLASSMORPHISM LOGIC --- */
+/* Extreme Glassmorphism */
 @container style(--enable-blur: 1) {
     .contentWrapper__08434, .contentWrapper__9c62c, .user-profile-popout,
-    .tooltip_c36707, .tooltip__4e35b, .reactionTooltip_b49891,
-    .wrapper_c0e32c[role="dialog"], .root__9c3be,
+    .tooltip_c36707, .wrapper_c0e32c[role="dialog"], .root__9c3be,
     [role="dialog"]:not([data-dialog="modal"]):not(.focusLock__49fc1),
-    .container__8a031, .root__49fc1, .panels__5e434,
-    .vc-settings-modal, .popover_f84418, .container__16eb0,
-    .chatTarget__01ae2.floating__01ae2, .popout__76f04, .topicsDropdown__0f481 {
+    .container__8a031, .root__49fc1, .panels__5e434, .popover_f84418 {
         backdrop-filter: blur(calc(var(--blur-strength)));
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
-    }
-
-    /* Dynamic Pastel Borders for User Profiles */
-    .custom-user-profile-theme { 
-        background: transparent; position: relative; border-radius: 32px;
-        &::before{ 
-            content: ""; position: absolute; inset: 0;
-            padding: var(--custom-user-profile-theme-padding);
-            border-radius: inherit;
-            background: linear-gradient(45deg, var(--interactive-normal), var(--interactive-hover), var(--brand-experiment));
-            background-size: 300% 300%;
-            animation: borderGlow 8s ease infinite;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-        }
-        > div[class^="inner_"] { 
-            --profile-gradient-start: color-mix(in oklab,var(--profile-gradient-overlay-color) 40%,var(--profile-gradient-primary-color));
-            --profile-gradient-end: color-mix(in oklab,var(--profile-gradient-overlay-color) 40%,var(--profile-gradient-secondary-color));
-        }
-    }
-
-    @keyframes borderGlow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .menu_c1e9c4:before { 
-        content: ""; position: absolute; inset: 0; border-radius: inherit;
-        backdrop-filter: blur(var(--blur-strength));
-        border: 1px solid rgba(203, 166, 247, 0.2);
+        border: 1px solid rgba(0, 242, 255, 0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     }
 }

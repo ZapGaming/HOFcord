@@ -22,45 +22,61 @@
 ========================================= */
 :root, .theme-dark {
     /* 🪟 GLASSMORPHISM & TINT */
-    --window-tint: rgba(20, 15, 30, 0.4); 
-    --blur-strength: 10px;
+    --window-tint: rgba(5, 0, 15, 0.6); 
+    --blur-strength: 8px;
 
     /* 🌌 3D ENVIRONMENT VOID */
-    --bg-void: #0f0b15;
+    --bg-void: #050010;
     
     /* 🏁 3D GRIDS (Floor & Ceiling) */
-    --grid-color-1: rgba(245, 194, 231, 0.4); /* Pastel Pink */
-    --grid-color-2: rgba(148, 226, 213, 0.4); /* Pastel Mint */
+    --grid-color-1: #ff007b; /* Neon Magenta */
+    --grid-color-2: #00f2ff; /* Electric Cyan */
 
     /* ☀️ 3D SUN GRADIENT */
-    --sun-top: #f5a97f; /* Peach */
-    --sun-mid: #f5c2e7; /* Pink */
-    --sun-bot: #cba6f7; /* Lavender */
-
-    /* 🧊 3D FLOATING SHAPES (Crystal & Ring) */
-    --shape-primary: rgba(148, 226, 213, 0.6);
-    --shape-secondary: rgba(203, 166, 247, 0.6);
-    --shape-glow: rgba(148, 226, 213, 0.3);
+    --sun-top: #ff007b;
+    --sun-mid: #7000ff; /* Vivid Purple */
+    --sun-bot: #00f2ff;
 
     /* ✨ 3D PARTICLE DUST */
-    --dust-color-1: #94e2d5;
-    --dust-color-2: #f5c2e7;
-    --dust-color-3: #cba6f7;
+    --dust-color-1: #39ff14; /* Toxic Lime */
+    --dust-color-2: #ff007b;
+    --dust-color-3: #00f2ff;
 
     /* 💻 DISCORD UI ACCENTS */
-    --interactive-normal: #94e2d5;
-    --interactive-hover: #f5c2e7;
-    --brand-experiment: #cba6f7;
-    --hover-glow: rgba(245, 194, 231, 0.4);
+    --interactive-normal: #00f2ff;
+    --interactive-hover: #ff007b;
+    --brand-experiment: #7000ff;
+    --hover-glow: rgba(0, 242, 255, 0.8);
     
     /* 🎨 DISCORD BASE COLORS */
-    --text-normal: #f8f8f2;
-    --text-muted: #a69cbd;
-    --background-base-lowest: rgba(15, 10, 25, 0.4) !important;
-    --background-base-lower: rgba(25, 15, 35, 0.5) !important;
-    --background-base-low: rgba(45, 25, 60, 0.5) !important;
-    --chat-background-default: rgba(20, 15, 35, 0.3) !important;
-    --background-surface-high: rgba(65, 40, 85, 0.4) !important;
-    --background-surface-higher: rgba(85, 55, 105, 0.5) !important;
-    --background-surface-highest: rgba(105, 75, 130, 0.6) !important;
+    --text-normal: #ffffff;
+    --text-muted: #8b9bb4;
+    --background-base-lowest: rgba(5, 0, 15, 0.7) !important;
+    --background-base-lower: rgba(10, 0, 25, 0.6) !important;
+    --background-base-low: rgba(20, 0, 40, 0.5) !important;
+    --chat-background-default: transparent !important;
+    --background-surface-high: rgba(40, 0, 80, 0.5) !important;
+    --background-surface-higher: rgba(60, 0, 100, 0.6) !important;
+    --background-surface-highest: rgba(80, 0, 120, 0.7) !important;
+
+    /* 🧊 3D CHAT BAR VARIABLES */
+    --bar-min-width: 380px;
+    --bar-max-width: 700px;
+    --c1: #00f2ff;
+    --c2: #7000ff;
+    --c3: #ff007b;
+
+    /* Core Theme Overrides */
+    --theme-background-image: none;
+    --enable-blur: 1; 
+    --tm-enable: 1; 
+    --tm-blur: var(--blur-strength);
+    --app-frame-background: 0 0 !important;
+    --modal-background: rgba(20, 0, 40, 0.85) !important;
+    --modal-footer-background: rgba(10, 0, 25, 0.9) !important;
+    --user-profile-overlay-background: rgba(0, 242, 255, 0.1);
+    --card-background-default: rgba(255, 0, 123, 0.1) !important;
+    --background-scrim: rgba(0, 0, 0, 0.8);
+    --scrollbar-auto-thumb: rgba(0, 242, 255, 0.5);
+    --__header-bar-background: 0 0 !important;
 }

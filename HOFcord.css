@@ -52,63 +52,78 @@
    HOF - VARS
    Edit these variables to change the theme!
 ========================================= */
-:root, .theme-dark {
-    /* 🪟 GLASSMORPHISM & TINT */
+/* --- DARK MODE (Cyberpunk Void) --- */
+.theme-dark {
     --window-tint: rgba(5, 0, 15, 0.6); 
-    --blur-strength: 8px;
-
-    /* 🌌 3D ENVIRONMENT VOID */
     --bg-void: #050010;
     
-    /* 🏁 3D GRIDS (Floor & Ceiling) */
     --grid-color-1: #ff007b; /* Neon Magenta */
     --grid-color-2: #00f2ff; /* Electric Cyan */
+    --grid-color-3: #7000ff; /* Deep Purple */
 
-    /* ☀️ 3D SUN GRADIENT */
     --sun-top: #ff007b;
-    --sun-mid: #7000ff; /* Vivid Purple */
+    --sun-mid: #7000ff; 
     --sun-bot: #00f2ff;
 
-    /* ✨ 3D PARTICLE DUST */
     --dust-color-1: #39ff14; /* Toxic Lime */
     --dust-color-2: #ff007b;
     --dust-color-3: #00f2ff;
 
-    /* 💻 DISCORD UI ACCENTS */
     --interactive-normal: #00f2ff;
     --interactive-hover: #ff007b;
-    --brand-experiment: #7000ff;
     --hover-glow: rgba(0, 242, 255, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.8);
+    --glass-border: rgba(0, 242, 255, 0.3);
     
-    /* 🎨 DISCORD BASE COLORS */
     --text-normal: #ffffff;
     --text-muted: #8b9bb4;
     --background-base-lowest: rgba(5, 0, 15, 0.7) !important;
-    --background-base-lower: rgba(10, 0, 25, 0.6) !important;
-    --background-base-low: rgba(20, 0, 40, 0.5) !important;
-    --chat-background-default: transparent !important;
-    --background-surface-high: rgba(40, 0, 80, 0.5) !important;
-    --background-surface-higher: rgba(60, 0, 100, 0.6) !important;
     --background-surface-highest: rgba(80, 0, 120, 0.7) !important;
+    --modal-background: rgba(20, 0, 40, 0.85) !important;
+}
 
-    /* 🧊 3D CHAT BAR VARIABLES */
+/* --- LIGHT MODE (Holographic Prism) --- */
+.theme-light {
+    --window-tint: rgba(255, 255, 255, 0.4); 
+    --bg-void: #f4f7ff; /* Bright airy blue-white */
+    
+    --grid-color-1: #ff3399; /* Hot Pink */
+    --grid-color-2: #00d4ff; /* Bright Sky Blue */
+    --grid-color-3: #ffcc00; /* Sun Yellow */
+
+    --sun-top: #ffcc00;
+    --sun-mid: #ff3399; 
+    --sun-bot: #00d4ff;
+
+    --dust-color-1: #ff3399; 
+    --dust-color-2: #00d4ff;
+    --dust-color-3: #ffcc00;
+
+    --interactive-normal: #ff3399;
+    --interactive-hover: #00d4ff;
+    --hover-glow: rgba(255, 51, 153, 0.6);
+    --shadow-color: rgba(0, 50, 100, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    
+    --text-normal: #1a1a2e;
+    --text-muted: #5a6b8c;
+    --background-base-lowest: rgba(255, 255, 255, 0.6) !important;
+    --background-surface-highest: rgba(255, 255, 255, 0.8) !important;
+    --modal-background: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* --- SHARED VARIABLES --- */
+:root {
+    --blur-strength: 12px;
     --bar-min-width: 380px;
     --bar-max-width: 700px;
-    --c1: #00f2ff;
-    --c2: #7000ff;
-    --c3: #ff007b;
-
+    
     /* Core Theme Overrides */
     --theme-background-image: none;
     --enable-blur: 1; 
     --tm-enable: 1; 
     --tm-blur: var(--blur-strength);
     --app-frame-background: 0 0 !important;
-    --modal-background: rgba(20, 0, 40, 0.85) !important;
-    --modal-footer-background: rgba(10, 0, 25, 0.9) !important;
-    --user-profile-overlay-background: rgba(0, 242, 255, 0.1);
-    --card-background-default: rgba(255, 0, 123, 0.1) !important;
-    --background-scrim: rgba(0, 0, 0, 0.8);
-    --scrollbar-auto-thumb: rgba(0, 242, 255, 0.5);
+    --chat-background-default: transparent !important;
     --__header-bar-background: 0 0 !important;
 }

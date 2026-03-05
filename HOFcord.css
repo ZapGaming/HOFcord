@@ -9,9 +9,58 @@
 @import url("");
 /* extras */
 @import url("https://raw.githubusercontent.com/yiruzu/vencord-snippets/refs/heads/main/snippets/BubbleUsernames/import.css");
-@import url("https://warrayquipsome.github.io/Chillax/Addons/IconPackEdited.css");
 @import url("https://warrayquipsome.github.io/Chillax/Addons/AvatarOnlyMemberList.css");
-@import url("https://warrayquipsome.github.io/Chillax/Addons/FolderRedesign.css");
+
+
+
+/* =========================================
+   HOF - VARS
+   Edit these variables to change the theme!
+========================================= */
+:root, .theme-dark {
+    /* 🪟 GLASSMORPHISM & TINT */
+    --window-tint: rgba(20, 15, 30, 0.4); 
+    --blur-strength: 10px;
+
+    /* 🌌 3D ENVIRONMENT VOID */
+    --bg-void: #0f0b15;
+    
+    /* 🏁 3D GRIDS (Floor & Ceiling) */
+    --grid-color-1: rgba(245, 194, 231, 0.4); /* Pastel Pink */
+    --grid-color-2: rgba(148, 226, 213, 0.4); /* Pastel Mint */
+
+    /* ☀️ 3D SUN GRADIENT */
+    --sun-top: #f5a97f; /* Peach */
+    --sun-mid: #f5c2e7; /* Pink */
+    --sun-bot: #cba6f7; /* Lavender */
+
+    /* 🧊 3D FLOATING SHAPES (Crystal & Ring) */
+    --shape-primary: rgba(148, 226, 213, 0.6);
+    --shape-secondary: rgba(203, 166, 247, 0.6);
+    --shape-glow: rgba(148, 226, 213, 0.3);
+
+    /* ✨ 3D PARTICLE DUST */
+    --dust-color-1: #94e2d5;
+    --dust-color-2: #f5c2e7;
+    --dust-color-3: #cba6f7;
+
+    /* 💻 DISCORD UI ACCENTS */
+    --interactive-normal: #94e2d5;
+    --interactive-hover: #f5c2e7;
+    --brand-experiment: #cba6f7;
+    --hover-glow: rgba(245, 194, 231, 0.4);
+    
+    /* 🎨 DISCORD BASE COLORS */
+    --text-normal: #f8f8f2;
+    --text-muted: #a69cbd;
+    --background-base-lowest: rgba(15, 10, 25, 0.4) !important;
+    --background-base-lower: rgba(25, 15, 35, 0.5) !important;
+    --background-base-low: rgba(45, 25, 60, 0.5) !important;
+    --chat-background-default: rgba(20, 15, 35, 0.3) !important;
+    --background-surface-high: rgba(65, 40, 85, 0.4) !important;
+    --background-surface-higher: rgba(85, 55, 105, 0.5) !important;
+    --background-surface-highest: rgba(105, 75, 130, 0.6) !important;
+}
 
 
 
